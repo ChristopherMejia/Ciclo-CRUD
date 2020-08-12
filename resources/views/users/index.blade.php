@@ -28,7 +28,18 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>Eliminar</td>
+                        <td>
+                            <!-- Boton Eliminar -->
+                            <form action="{{ route('users.destroy', $user ) }}" method="post">
+                                @method ('DELETE')
+                                @csrf
+                                <input 
+                                type="submit" 
+                                value="Eliminar" 
+                                class="btn btn-sm btn-danger" 
+                                onclick = "return confirm('¿Desea Eliminar... ?')">
+                            </form>
+                        </td>
                     </tr>
                  @endforeach
                 </tbody>
