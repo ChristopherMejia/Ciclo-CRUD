@@ -15,19 +15,28 @@
         <div class="col-sm-8 mx-auto">
         <div class="card border-0 shadow">
             <div class="card-body">
+            <!-- Mostramos errores en el formulario del USER -->
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        {{ $error }} <br>
+                    @endforeach
+                </div>
+            @endif
+
                 <form action="{{ route('users.store') }}" method="post">
+                @csrf
                     <div class="form-row">
                         <div class="col-sm-3">
-                            <input type="text" name="name" class="form-control" placeholder="Nombre">
+                            <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{ old('name') }}">
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" name="email" class="form-control" placeholder="Email">
+                            <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
                         </div>
                         <div class="col-sm-3">
                             <input type="password" name="password" class="form-control" placeholder="Contraseña">
                         </div>
                         <div class="col-auto">
-                            @csrf
                             <button type="submit" class="btn btn-primary"> Enviar</button>
                         </div>
                     </div>
